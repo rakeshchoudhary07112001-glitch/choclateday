@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Chocolate Day ❤️</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(135deg, #3e1f0d, #6b3e26);
+      color: white;
+      min-height: 100vh;
+      overflow-x: hidden;
+      text-align: center;
+    }
+
+    h1 {
+      margin-top: 30px;
+      font-size: 2.5rem;
+    }
+
+    .subtitle {
+      margin: 10px 20px;
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.1);
+      margin: 30px auto;
+      width: 90%;
+      max-width: 400px;
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.4);
+      backdrop-filter: blur(5px);
+    }
+
+    .photos {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin: 20px 0;
+    }
+
+    .photos img {
+      width: 130px;
+      height: 170px;
+      object-fit: cover;
+      border-radius: 15px;
+      border: 2px solid #fff;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    }
+
+    .message {
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-top: 15px;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 30px;
+      background: #ffb703;
+      color: #3e1f0d;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      background: #ffd166;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    /* Falling chocolates */
+    .choco {
+      position: fixed;
+      top: -50px;
+      font-size: 24px;
+      animation: fall linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh);
+      }
+    }
+
+    footer {
+      margin: 30px 0;
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Happy Chocolate Day 🍫❤️</h1>
+  <p class="subtitle">For the sweetest girl in my life</p>
+
+  <div class="card">
+    <div class="photos">
+      <img src="01.jpg" alt="Her photo 1">
+      <img src="02.jpg" alt="Her photo 2">
+       <img src="03.jpg" alt="Her photo 3">
+    </div>
+
+    <p class="message">
+      Even though miles separate us,  
+      my heart still finds its way to you every single day.  
+      If I could, I’d send you all the chocolates in the world,  
+      just to see your smile for a second. 💕
+    </p>
+
+    <button onclick="showLove()">Tap for a surprise 💌</button>
+
+    <p id="extraLove" class="message hidden">
+      You are sweeter than any chocolate,  
+      more comforting than any dessert,  
+      and more addictive than anything in this world.  
+      I don’t need chocolate when I have *you*. 🥺❤️  
+      <br><br>
+      Happy Chocolate Day, my love.
+    </p>
+
+    <button onclick="toggleMusic()">Play our song 🎵</button>
+  </div>
+
+  <footer>
+    Made with love by Rakesh 💖
+  </footer>
+
+  <audio id="music" src="music.mp3" loop></audio>
+
+  <script>
+    function showLove() {
+      document.getElementById("extraLove").classList.remove("hidden");
+    }
+
+    function toggleMusic() {
+      const music = document.getElementById("music");
+      if (music.paused) {
+        music.play();
+      } else {
+        music.pause();
+      }
+    }
+
+    // Create falling chocolates
+    const emojis = ["🍫","🍩","🍪","🍬"];
+    setInterval(() => {
+      const choco = document.createElement("div");
+      choco.className = "choco";
+      choco.innerText = emojis[Math.floor(Math.random()*emojis.length)];
+      choco.style.left = Math.random() * 100 + "vw";
+      choco.style.animationDuration = (3 + Math.random()*3) + "s";
+      document.body.appendChild(choco);
+
+      setTimeout(() => {
+        choco.remove();
+      }, 6000);
+    }, 400);
+  </script>
+
+</body>
+</html>
